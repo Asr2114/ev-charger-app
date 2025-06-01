@@ -72,7 +72,7 @@ const headers = {
 }
 
 const loadStations = async () =>{
-    const res = await axios.get('http://localhost:5500/api/stations', {headers})
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/stations`, {headers})
     stations.value = res.data
 }
 
@@ -82,9 +82,9 @@ onMounted(()=>{
 
 const saveStation = async() =>{
     if(editing.value){
-        await axios.put(`http://localhost:5500/api/stations/${form.value._id}`, form.value, {headers})
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/stations/${form.value._id}`, form.value, {headers})
     } else {
-        await axios.post('http://localhost:5500/api/stations', form.value, {headers})
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/stations`, form.value, {headers})
     }
 
     form.value={
@@ -107,7 +107,7 @@ const editStation = (station) =>{
 }
 
 const deleteStation=async(id) =>{
-    await axios.delete(`http://localhost:5500/api/stations/${id}`, {headers})
+    await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/stations/${id}`, {headers})
     loadStations()
 }
 
