@@ -48,7 +48,7 @@ const stations = ref([])
 
 const loadStations = async () => {
   try {
-    const res = await axios.get('http://localhost:5500/api/stations', { headers })
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/stations`, { headers })
     stations.value = res.data
     console.log("Stations Loaded:", stations.value);
   } catch (err) {
